@@ -37,6 +37,23 @@ date
 ### Clear terminal
 clear
 
+### Quando não tem barra de rolagem(para ler com calma)
+ls | more
+Ir apertando o enter, vai mostrando o diretoório aos poucos - Shift + c, para
+
+### Filtrar pela primeira letra
+ls primeira letra + *
+Exemplo: ls a*
+### Filtrar pela primeira letra e a segunda
+ls primeira letra + ?+ *
+Exemplo: ls g?o*
+
+### Criar arquivo
+touch arquivo.txt
+
+### listando + de 1 arquivo
+ls arquivo[1-3]*
+
 ## Notes
 
 Linux terminals are **case sensitive**, meaning uppercase and lowercase letters are treated differently.

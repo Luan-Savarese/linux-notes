@@ -1,101 +1,56 @@
-# Comandos Básicos de Linux
+# 🐧 Guia de Comandos e Fundamentos do Linux
 
-## Navegação pelo Sistema de Arquivos
-
-O terminal Linux é **case sensitive**, ou seja, diferencia letras **maiúsculas** e **minúsculas**.
-
-Exemplo:
-`Arquivo.txt` é diferente de `arquivo.txt`.
+Este documento reúne os principais conceitos e comandos para navegação, gerenciamento de arquivos e administração básica em sistemas Linux.
 
 ---
 
-## Informações do Terminal
+## 1. Fundamentos do Terminal
 
-Quando abrimos o terminal, algumas informações aparecem:
+* **Case Sensitive:** O sistema diferencia letras maiúsculas de minúsculas. 
+  * *Exemplo:* `Arquivo.txt` é considerado diferente de `arquivo.txt`.
 
-- **ip a** → Mostra os endereços IP da máquina.
-
-- **@ (arroba)** → Após o nome do usuário aparece o **hostname** da máquina.
-
-Exemplo:
-usuario@maquina
-
-- **~ (til)** → Indica que você está na **home do usuário**.
-
-- **$** → Usuário comum (sem privilégios administrativos).
-
-- **#** → Usuário **root** (administrador do sistema).
+### Entendendo o Prompt de Comando
+Ao abrir o terminal, a linha de comando exibe informações importantes, geralmente no formato `usuario@maquina ~ $`:
+* **`@` (arroba):** Separa o nome do usuário do *hostname* (nome da máquina).
+* **`~` (til):** Indica que você está na *home* (pasta pessoal) do usuário atual.
+* **`$`:** Indica que você está utilizando um usuário comum (sem privilégios administrativos).
+* **`#`:** Indica que você está utilizando o usuário `root` (administrador do sistema).
 
 ---
 
-## Comandos Úteis
+## 2. Atalhos e Dicas Úteis
 
-### Data e hora
-date
-
-Mostra a data e hora atual do sistema.
-
----
-
-### Limpar o terminal
-clear
-
-Também é possível usar:
-Ctrl + L
-
+* **Autocompletar com `TAB`:** Ao começar a digitar o nome de um diretório ou arquivo, pressione `TAB`. O terminal tentará completá-lo automaticamente. Se pressionar `TAB` duas vezes, ele exibe todas as opções possíveis.
+* **Limpar o terminal:**
+  * Comando: `clear`
+  * Atalho: `Ctrl + L`
 
 ---
 
-### Ver diretório atual
-pwd
+## 3. Informações do Sistema
 
-
-Mostra em qual diretório você está.
-
----
-
-### Diretório raiz
-
-O diretório raiz do Linux é:
-/
-
+* **`date`**: Mostra a data e a hora atuais do sistema.
+* **`ip a`**: Exibe os endereços IP associados às interfaces de rede da máquina.
 
 ---
 
-## Navegação entre diretórios
+## 4. Navegação pelo Sistema de Arquivos
 
-### Entrar em um diretório
-cd
+O diretório raiz (onde todo o sistema começa) é representado pela barra **`/`**.
 
-
-Significa **change directory**.
-
----
-
-### Voltar para o diretório raiz
-cd /
+* **`pwd`** (*Print Working Directory*): Mostra o caminho completo de onde você está atualmente.
+* **`cd`** (*Change Directory*): Sem argumentos, leva você de volta para o diretório *home*.
+* **`cd /`**: Vai direto para o diretório raiz do sistema.
+* **`cd ..`**: Volta um nível (uma pasta para trás).
+* **`cd ../nome-do-diretorio`**: Volta um nível e, imediatamente, entra no diretório especificado.
 
 ---
 
-### Listar arquivos e diretórios
-ls
+## 5. Listagem de Arquivos e Diretórios (`ls`)
 
----
+O comando `ls` exibe o conteúdo do diretório atual. Ele pode ser combinado com diversas opções (flags) para detalhar a visualização:
 
-### Voltar uma pasta
-cd ..
----
-
-### Voltar uma pasta e entrar em outra
-cd ../nome-do-diretorio
-
----
-
-## Autocompletar com TAB
-
-Ao digitar parte do nome de um diretório e pressionar:
-TAB
-
-o terminal tenta completar automaticamente.
-
-Se pressionar **TAB duas vezes**, ele mostra as possíveis opções de diretórios ou arquivos.
+* **`ls`**: Lista simples do conteúdo.
+* **`ls *`**: Lista o conteúdo do diretório atual e também o que há dentro de seus subdiretórios imediatos.
+* **`ls -a`**: Lista todos os arquivos, incluindo os ocultos (que começam com um ponto `.`).
+* **`ls -l`**: Lista no formato longo. Exibe permissões,

@@ -83,3 +83,11 @@ O comando `ls` possui diversas opções e filtros poderosos:
 
 * **`find`**: Lista recursivamente tudo a partir de onde você está.
 * **`find -name "nome"`**: Busca pelo nome exato do arquivo ou pasta.
+
+---
+
+## 8. Gerenciamento de Usuários e Privilégios
+
+Comandos essenciais para administração do sistema e controle de acesso:
+
+* **`sudo`** (*SuperUser Do*): Executa um comando com privilégios de super

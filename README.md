@@ -1,66 +1,60 @@
-# Linux Basics
+# 🐧 Linux Basics
 
-This repository contains my study notes about Linux fundamentals, terminal commands, and file system navigation.
+Este repositório contém minhas anotações de estudo sobre fundamentos do Linux, comandos de terminal e navegação no sistema de arquivos.
 
-The goal is to document commands and concepts learned during my studies in Linux and cybersecurity.
+O objetivo é documentar comandos e conceitos aprendidos durante meus estudos contínuos em infraestrutura, Linux e cibersegurança.
 
-## Topics Covered
+---
 
-- Linux terminal basics
-- File system navigation
-- User privileges
-- Basic system commands
+## 📌 Tópicos Abordados
 
-## Commands Examples
+* Fundamentos do terminal Linux
+* Navegação no sistema de arquivos
+* Privilégios de usuário
+* Comandos básicos de administração de sistema
 
-### Show IP address
-ip a
+---
 
-### Show current directory
-pwd
+## 🛠️ Exemplos de Comandos Rápidos
 
-### List files and directories
-ls
+### Informações Básicas
+* `ip a` → Exibe os endereços IP da máquina.
+* `date` → Mostra a data e a hora atuais do sistema.
+* `clear` → Limpa a tela do terminal.
+* `pwd` → Mostra o diretório atual onde você está.
 
-### Change directory
-cd
+### Navegação
+* `cd` → Entra em um diretório ou volta para a *home*.
+* `cd ..` → Volta um nível (uma pasta para trás).
+* `cd /` → Vai para o diretório raiz do sistema.
 
-### Go back one directory
-cd ..
+### Gerenciamento e Listagem (`ls`)
+* `ls` → Lista os arquivos e diretórios.
+* `touch nome_do_arquivo.extensao` → Cria um novo arquivo vazio (Ex: `touch arquivo.txt`).
 
-### Go to root directory
-cd /
+#### Paginação de Resultados (Para listas grandes)
+Quando a listagem de arquivos for muito grande e não couber na tela:
+* `ls | more` → Permite ler o conteúdo aos poucos. 
+    * *Aperte `Enter` para rolar a tela linha por linha.*
+    * *Aperte `q` ou `Shift + c` para sair da paginação.*
 
-### Show date and time
-date
+#### Filtros (Uso de Curingas)
+Você pode usar curingas para buscar padrões específicos:
+* **Filtrar pela primeira letra:** `ls a*` (Lista tudo que começa com "a").
+* **Filtrar por partes da palavra:** `ls g?o*` (A interrogação substitui um único caractere. Lista, por exemplo, "globo", "geo", etc.).
+* **Filtrar por um intervalo (Regex básico):** `ls arquivo[1-3]*` (Lista apenas `arquivo1`, `arquivo2` e `arquivo3`).
 
-### Clear terminal
-clear
+---
 
-### Quando não tem barra de rolagem(para ler com calma)
-ls | more
-Ir apertando o enter, vai mostrando o diretoório aos poucos - Shift + c, para
+## ⚠️ Notas Importantes
 
-### Filtrar pela primeira letra
-ls primeira letra + *
-Exemplo: ls a*
-### Filtrar pela primeira letra e a segunda
-ls primeira letra + ?+ *
-Exemplo: ls g?o*
+Os terminais Linux são **Case Sensitive**, o que significa que letras maiúsculas e minúsculas são tratadas como caracteres diferentes.
 
-### Criar arquivo
-touch arquivo.txt
+*Exemplo prático:*
+`Arquivo.txt` é completamente diferente de `arquivo.txt`.
 
-### listando + de 1 arquivo
-ls arquivo[1-3]*
+---
 
-## Notes
+## 👨‍💻 Autor
 
-Linux terminals are **case sensitive**, meaning uppercase and lowercase letters are treated differently.
-
-Example:
-Arquivo.txt ≠ arquivo.txt
-
-## Author
-
-Luan Savarese
+**Luan Savarese**

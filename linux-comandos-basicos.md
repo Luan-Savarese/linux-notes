@@ -10,47 +10,76 @@ Este documento reúne os principais conceitos e comandos para navegação, geren
   * *Exemplo:* `Arquivo.txt` é considerado diferente de `arquivo.txt`.
 
 ### Entendendo o Prompt de Comando
-Ao abrir o terminal, a linha de comando exibe informações importantes, geralmente no formato `usuario@maquina ~ $`:
+Ao abrir o terminal, a linha de comando exibe informações importantes:
 * **`@` (arroba):** Separa o nome do usuário do *hostname* (nome da máquina).
 * **`~` (til):** Indica que você está na *home* (pasta pessoal) do usuário atual.
-* **`$`:** Indica que você está utilizando um usuário comum (sem privilégios administrativos).
-* **`#`:** Indica que você está utilizando o usuário `root` (administrador do sistema).
+* **`$`:** Indica um usuário comum.
+* **`#`:** Indica o usuário `root` (administrador).
 
 ---
 
 ## 2. Atalhos e Dicas Úteis
 
-* **Autocompletar com `TAB`:** Ao começar a digitar o nome de um diretório ou arquivo, pressione `TAB`. O terminal tentará completá-lo automaticamente. Se pressionar `TAB` duas vezes, ele exibe todas as opções possíveis.
-* **Limpar o terminal:**
-  * Comando: `clear`
-  * Atalho: `Ctrl + L`
+* **Autocompletar com `TAB`:** Pressione `TAB` uma vez para completar ou duas para ver as opções.
+* **Limpar o terminal:** Comando `clear` ou atalho `Ctrl + L`.
 
 ---
 
 ## 3. Informações do Sistema
 
-* **`date`**: Mostra a data e a hora atuais do sistema.
-* **`ip a`**: Exibe os endereços IP associados às interfaces de rede da máquina.
+* **`date`**: Mostra data e hora atuais.
+* **`ip a`**: Exibe os endereços IP das interfaces de rede.
 
 ---
 
 ## 4. Navegação pelo Sistema de Arquivos
 
-O diretório raiz (onde todo o sistema começa) é representado pela barra **`/`**.
+O diretório raiz é representado pela barra **`/`**.
 
-* **`pwd`** (*Print Working Directory*): Mostra o caminho completo de onde você está atualmente.
-* **`cd`** (*Change Directory*): Sem argumentos, leva você de volta para o diretório *home*.
-* **`cd /`**: Vai direto para o diretório raiz do sistema.
-* **`cd ..`**: Volta um nível (uma pasta para trás).
-* **`cd ../nome-do-diretorio`**: Volta um nível e, imediatamente, entra no diretório especificado.
+* **`pwd`**: Mostra o caminho (diretório) atual.
+* **`cd`**: Entra em pastas ou volta para a *home*.
+* **`cd /`**: Vai para a raiz.
+* **`cd ..`**: Volta um nível.
+* **`cd ../nome-da-pasta`**: Volta um nível e entra em outra pasta.
 
 ---
 
-## 5. Listagem de Arquivos e Diretórios (`ls`)
+## 5. Listagem de Arquivos e Filtros (`ls`)
 
-O comando `ls` exibe o conteúdo do diretório atual. Ele pode ser combinado com diversas opções (flags) para detalhar a visualização:
+O comando `ls` possui diversas opções e filtros poderosos:
 
-* **`ls`**: Lista simples do conteúdo.
-* **`ls *`**: Lista o conteúdo do diretório atual e também o que há dentro de seus subdiretórios imediatos.
-* **`ls -a`**: Lista todos os arquivos, incluindo os ocultos (que começam com um ponto `.`).
-* **`ls -l`**: Lista no formato longo. Exibe permissões,
+### Flags de Visualização
+* **`ls`**: Lista simples.
+* **`ls -a`**: Lista tudo, inclusive arquivos ocultos.
+* **`ls -l`**: Formato longo (permite ver permissões e tamanhos).
+* **`ls -lh`**: Tamanhos em formato legível (KB, MB, GB).
+* **`ls -i`**: Mostra o número do *inode*.
+
+### Paginação (Para listas grandes)
+* **`ls | more`**: Permite ler a lista aos poucos. 
+    * *`Enter` rola a linha e `q` sai da visualização.*
+
+### Filtros e Curingas
+* **`ls *`**: Lista o conteúdo atual e dos subdiretórios.
+* **`ls a*`**: Lista tudo que começa com a letra "a".
+* **`ls g?o*`**: O `?` substitui um caractere. (Ex: encontra `globo`, `geo`).
+* **`ls arquivo[1-3]*`**: Busca por um intervalo. (Ex: `arquivo1`, `arquivo2`, `arquivo3`).
+
+**Cores Padrão:** Azul (Diretório), Branco (Arquivo), Ciano (Link/Atalho).
+
+---
+
+## 6. Criação e Remoção
+
+* **`touch nome_do_arquivo`**: Cria um arquivo novo e vazio.
+* **`mkdir nome_da_pasta`**: Cria uma nova pasta.
+* **`rmdir nome_da_pasta`**: Remove uma pasta (se estiver vazia).
+* **`rm nome_do_arquivo`**: Deleta arquivos.
+* **`rm -rf nome_da_pasta`**: Deleta pastas e todo o seu conteúdo à força. *(Cuidado!)*
+
+---
+
+## 7. Busca de Arquivos (`find`)
+
+* **`find`**: Lista recursivamente tudo a partir de onde você está.
+* **`find -name "nome"`**: Busca pelo nome exato do arquivo ou pasta.

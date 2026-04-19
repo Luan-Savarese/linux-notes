@@ -1,6 +1,6 @@
 # 🐧 Guia de Comandos e Fundamentos do Linux
 
-Este documento reúne os principais conceitos e comandos para navegação, gerenciamento de arquivos e administração básica em sistemas Linux.
+Este documento reúne os principais conceitos e comandos para navegação, gerenciamento de arquivos, administração de usuários e controle de permissões em sistemas Linux.
 
 ---
 
@@ -18,17 +18,19 @@ Ao abrir o terminal, a linha de comando exibe informações importantes:
 
 ---
 
-## 2. Atalhos e Dicas Úteis
+## 2. Atalhos e Utilitários do Terminal
 
 * **Autocompletar com `TAB`:** Pressione `TAB` uma vez para completar ou duas para ver as opções.
-* **Limpar o terminal:** Comando `clear` ou atalho `Ctrl + L`.
+* **`clear`** (ou `Ctrl + L`): Limpa a tela do terminal.
+* **`history`**: Mostra o histórico de todos os comandos digitados anteriormente no terminal.
 
 ---
 
-## 3. Informações do Sistema
+## 3. Visualização e Edição de Texto
 
-* **`date`**: Mostra data e hora atuais.
-* **`ip a`**: Exibe os endereços IP das interfaces de rede.
+* **`echo`**: Imprime um texto ou o valor de uma variável na tela (Ex: `echo "Olá Mundo"`).
+* **`nano`**: Abre o Nano, um editor de texto simples e direto executado diretamente no terminal (Ex: `nano arquivo.txt`).
+* **`cat`**: Concatena e exibe o conteúdo de um arquivo inteiro no terminal de uma só vez (Ex: `cat arquivo.txt`).
 
 ---
 
@@ -46,26 +48,13 @@ O diretório raiz é representado pela barra **`/`**.
 
 ## 5. Listagem de Arquivos e Filtros (`ls`)
 
-O comando `ls` possui diversas opções e filtros poderosos:
-
-### Flags de Visualização
 * **`ls`**: Lista simples.
 * **`ls -a`**: Lista tudo, inclusive arquivos ocultos.
 * **`ls -l`**: Formato longo (permite ver permissões e tamanhos).
 * **`ls -lh`**: Tamanhos em formato legível (KB, MB, GB).
-* **`ls -i`**: Mostra o número do *inode*.
-
-### Paginação (Para listas grandes)
-* **`ls | more`**: Permite ler a lista aos poucos. 
-    * *`Enter` rola a linha e `q` sai da visualização.*
-
-### Filtros e Curingas
+* **`ls | more`**: Permite ler listas grandes aos poucos (`Enter` rola, `q` sai).
 * **`ls *`**: Lista o conteúdo atual e dos subdiretórios.
-* **`ls a*`**: Lista tudo que começa com a letra "a".
-* **`ls g?o*`**: O `?` substitui um caractere. (Ex: encontra `globo`, `geo`).
-* **`ls arquivo[1-3]*`**: Busca por um intervalo. (Ex: `arquivo1`, `arquivo2`, `arquivo3`).
-
-**Cores Padrão:** Azul (Diretório), Branco (Arquivo), Ciano (Link/Atalho).
+* **`ls a*` / `ls g?o*` / `ls arq[1-3]*`**: Filtros com curingas para buscas específicas.
 
 ---
 
@@ -79,15 +68,52 @@ O comando `ls` possui diversas opções e filtros poderosos:
 
 ---
 
-## 7. Busca de Arquivos (`find`)
+## 7. Gerenciamento de Usuários e Grupos
 
-* **`find`**: Lista recursivamente tudo a partir de onde você está.
-* **`find -name "nome"`**: Busca pelo nome exato do arquivo ou pasta.
+Comandos essenciais para administração de identidades no sistema:
+
+* **`sudo`**: Executa um comando temporariamente com privilégios de superusuário (root).
+* **`su usuário`**: Alterna a sessão para outro usuário. (Ex: `su root` para virar administrador).
+* **`passwd usuário`**: Define ou altera a senha de um usuário. (Ex: `sudo passwd root` ou `passwd carlos`).
+
+### Criação, Modificação e Exclusão
+* **`useradd`**: Cria um novo usuário no sistema. 
+  * *Exemplo:* `useradd carlos`
+* **`usermod`**: Modifica as propriedades de um usuário existente.
+  * *Exemplo:* `usermod -G adm,sudo mariana` (Adiciona a usuária Mariana aos grupos `adm` e `sudo`).
+* **`userdel`**: Deleta um usuário.
+  * *Exemplo:* `userdel -r -f roberto` (Força a exclusão `-f` do usuário Roberto e apaga o seu diretório pessoal `-r`).
+
+### Grupos e Arquivos de Sistema
+* **`groupadd nome_do_grupo`**: Cria um novo grupo de usuários.
+* **`gpasswd nome_do_grupo`**: Administra o grupo (adiciona/remove membros e senhas).
+* **`cat /etc/passwd`**: Exibe o arquivo do sistema que lista todos os usuários cadastrados e suas configurações básicas.
+* **`cat /etc/group`**: Exibe o arquivo que lista todos os grupos do sistema e seus membros.
 
 ---
 
-## 8. Gerenciamento de Usuários e Privilégios
+## 8. Permissões de Arquivos e Diretórios (`chmod`)
 
-Comandos essenciais para administração do sistema e controle de acesso:
+No Linux, o controle de acesso é dividido em três categorias: **Dono (User)**, **Grupo (Group)** e **Outros (Others)**. As permissões podem ser definidas por letras ou números (sistema octal).
 
-* **`sudo`** (*SuperUser Do*): Executa um comando com privilégios de super
+### Tabela de Permissões
+| Permissão | Símbolo | Valor Numérico | Descrição |
+| :--- | :---: | :---: | :--- |
+| **Read** | `r` | **4** | Permite ler/visualizar o arquivo ou listar o diretório. |
+| **Write** | `w` | **2** | Permite alterar/gravar no arquivo ou criar/deletar no diretório. |
+| **Execute** | `x` | **1** | Permite executar o arquivo (scripts/programas) ou acessar o diretório. |
+| **Nenhuma** | `-` | **0** | Nenhuma permissão concedida. |
+
+### Usando o `chmod`
+O comando `chmod` altera essas permissões. A forma mais comum é usar a soma dos valores numéricos para o Dono, Grupo e Outros.
+
+* *Exemplo:* `chmod 777 carta.txt`
+  * O número `7` é a soma de **4 (Read) + 2 (Write) + 1 (Execute)**.
+  * Como são três setes (`777`), significa permissão total (Leitura, Escrita e Execução) concedida para o Dono, para o Grupo e para Outros. 
+  * *Nota de Segurança:* O uso do `777` deve ser evitado em ambientes de produção, pois permite que qualquer pessoa no sistema modifique ou execute o arquivo.
+
+---
+
+## 9. Serviços e Configurações Essenciais
+
+* **`sshd_config`**: Arquivo de configuração principal do serviço de acesso remoto via SSH (Geralmente localizado em `/etc/ssh/sshd_config`). É nele que configuramos portas, bloqueamos acesso root direto e aplicamos regras críticas de cibersegurança para acessos externos. Pode ser editado com `sudo nano /etc/ssh/sshd_config`.
